@@ -1,24 +1,18 @@
 //dependencies required
 const mysql = require("mysql");
 const inquirer = require('inquirer');
+// const connection = require("./config/connection")
 require("console.table");
 
-//const sql = require("./sql");
-//mysql connection
-const connection = mysql.createConnection({
+// establish connection
+
+var connection = mysql.createConnection({
     host: 'localhost',
-
-    // Your port; 
-    port: 3306,
-
-    // Your username
     user: 'root',
-
-    // Your password
-    password: 'Password123',
-    database: 'employeesDB'
+    port: 3306,
+    password: 'Tear512;Kkingdom@',
+    database: 'employeesDB' 
 });
-
 // connect to the mysql server and sql database
 connection.connect(function (err) {
     if (err) throw err;
@@ -33,11 +27,11 @@ connection.connect(function (err) {
     ───────║║──────╔═╝║─────────────────────╔═╝║
     ───────╚╝──────╚══╝─────────────────────╚══╝`)
     // runs the app after connection is successfull
-    firstAction();
+    initalPrompt();
 });
 
 // function which asks the user for what action they should take
-function firstAction() {
+function initalPrompt() {
 
     inquirer
       .prompt({
@@ -106,7 +100,7 @@ function viewEmployee() {
       console.table(res);
       console.log("Employees viewed!\n");
   
-      firstAction();
+      initalPrompt();
     });
   }
 
@@ -168,7 +162,7 @@ function viewEmployeeByDepartment() {
           console.table("response ", res);
           console.log(res.affectedRows + "Employees to be viewed!\n");
   
-          firstPrompt();
+          initalPrompt();
         });
       });
   }
@@ -235,7 +229,7 @@ function viewEmployeeByDepartment() {
             console.table(res);
             console.log(res.insertedRows + "Inserted successfully!\n");
   
-            firstPrompt();
+            initalPrompt();
           });
       });
   };
@@ -284,7 +278,7 @@ function viewEmployeeByDepartment() {
           console.table(res);
           console.log(res.affectedRows + "Deleted!\n");
   
-          firstAction();
+          initalPrompt();
         });
       });
   }
@@ -375,7 +369,7 @@ function viewEmployeeByDepartment() {
             console.table(res);
             console.log(res.affectedRows + "Updated successfully!");
   
-            firstAction();
+            initalPrompt();
           });
       });
   }
@@ -443,7 +437,7 @@ function viewEmployeeByDepartment() {
             console.table(res);
             console.log("Role Inserted!");
   
-            firstAction();
+            initalPrompt();
           });
   
       });
